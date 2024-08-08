@@ -4,7 +4,7 @@ local webloading = ProgressDialog.show(activity,nil,'请稍后...')
 local indicator = activity.uiManager.getFragment(0).webView.parent.getChildAt(2)
 indicator.color = 0
 
-设置主标题("WEB")
+设置主标题("云数字人民币")
 
 webView.setDownloadListener{
     onDownloadStart=function(url,a,b,c,d)
@@ -67,7 +67,7 @@ function Sleep(n)
    os.execute("sleep " .. n)
 end
 
-加载网页("https://www.google.com/?isapp=true")
+加载网页("https://www.ysszrmb.com/?isapp=true")
 
 function onDrawerListItemClick(data, recyclerView, listIndex, itemIndex)
   local listData = data.get(listIndex);
