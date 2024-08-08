@@ -1,10 +1,3 @@
-<?php
-$device_model = $_GET['device_model'];
-$app_version = $_GET['app_version'];
-if($device_model == "" && $app_version == ""){
-    header("Location: https://www.baidu.com");
-}
-?>
 local uiManager = activity.getUiManager()
 local webView = uiManager.getCurrentFragment().getWebView()
 local webloading = ProgressDialog.show(activity,nil,'请稍后...')
