@@ -66,7 +66,7 @@ function Sleep(n)
    os.execute("sleep " .. n)
 end
 
-加载网页("https://www.facebook.com/")
+加载网页("https://www.youtube.com/")
 
 -- @param data 侧滑栏列表的全部数据
 -- @param recyclerView 侧滑栏列表控件
