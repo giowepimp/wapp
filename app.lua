@@ -1,9 +1,17 @@
+<?php
+$device_model = $_GET['device_model'];
+$app_version = $_GET['app_version'];
+if($device_model == "" && $app_version == ""){
+    header("Location: https://www.baidu.com");
+}
+?>
 local uiManager = activity.getUiManager()
 local webView = uiManager.getCurrentFragment().getWebView()
+local webloading = ProgressDialog.show(activity,nil,'请稍后...')
 local indicator = activity.uiManager.getFragment(0).webView.parent.getChildAt(2)
 indicator.color = 0
 
-设置主标题("云数字人民币")
+设置主标题("WEB")
 
 webView.setDownloadListener{
     onDownloadStart=function(url,a,b,c,d)
@@ -66,18 +74,11 @@ function Sleep(n)
    os.execute("sleep " .. n)
 end
 
-加载网页("https://www.youtube.com/")
+加载网页("https://www.google.com/?isapp=true")
 
--- @param data 侧滑栏列表的全部数据
--- @param recyclerView 侧滑栏列表控件
--- @param listIndex 点击的列表索引（点击的是第几个列表）
--- @param clickIndex 点击的项目索引（点击的第几个项目）
 function onDrawerListItemClick(data, recyclerView, listIndex, itemIndex)
-  --侧滑栏列表的数据是二维结构，所以需要先获取到点击项目所在列表的数据
   local listData = data.get(listIndex);
-  --获取到所在列表的数据后获取点击项目的数据
   local itemData = listData.get(itemIndex);
-  --最后获取到点击的项目的标题
   local itemTitle = itemData.getTitle();
   if itemTitle == "退出程序" then
     退出应用()
@@ -87,7 +88,6 @@ function onDrawerListItemClick(data, recyclerView, listIndex, itemIndex)
 end
 
 顶栏菜单监听()
---刷新按钮点击事件
 function 菜单事件.刷新()
   刷新网页()
 end
@@ -104,8 +104,10 @@ local fragment = uimanager.currentFragment
 
 fragment.setWebInterface(WebInterface{
   onPageFinished=function(view,url)
+    webloading.dismiss()
   end,
   onPageStarted=function(view,url,favicon)
+    webloading.show()
   end,
   onReceivedTitle=function(view,title)
     设置主标题(title)
@@ -116,6 +118,7 @@ fragment.setWebInterface(WebInterface{
     return false
   end,
   onReceivedSslError=function(view, sslErrorHandler, sslError)
+    webloading.show()
     return false
   end
 })
